@@ -11,9 +11,9 @@ ja que estou utilizando WLS.
 
 Ao acessar o pgadmin, será necessário configurar para acessar o servidor, segue configurações:
 
-name: local-docker
-host name/address: pg-docker
-port: 5432
-maintenance database: mydatabase
-username: postgres
-password: 1234567
+- name: local-docker
+- host name/address: pg-docker
+- port: 5432
+- maintenance database: mydatabase
+- username: postgres
+- password: 1234567
