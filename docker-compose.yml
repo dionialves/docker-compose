@@ -20,6 +20,7 @@ services:
   # ====================================================================================================================
   pgadmin-docker:
     image: dpage/pgadmin4
+    user: "${UID}:${GID}"
     container_name: dev-pgadmin
     environment:
       PGADMIN_DEFAULT_EMAIL: me@example.com
