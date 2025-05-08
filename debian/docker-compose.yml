@@ -1,0 +1,40 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    environment:
+      POSTGRES_DB: asterisk
+      POSTGRES_USER: asterisk
+      POSTGRES_PASSWORD: asterisk
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - asterisk-net
+
+  asterisk:
+    build: ./asterisk
+    container_name: asterisk
+    depends_on:
+      - postgres
+    ports:
+      - "5060:5060/udp"
+      - "5060:5060/tcp"
+      - "10000-20000:10000-20000/udp"
+    volumes:
+      - ./asterisk/odbc.ini:/etc/odbc.ini
+      - ./asterisk/odbcinst.ini:/etc/odbcinst.ini
+      - ./asterisk/res_odbc.conf:/etc/asterisk/res_odbc.conf
+      - ./asterisk/cdr_adaptive_odbc.conf:/etc/asterisk/cdr_adaptive_odbc.conf
+      - ./asterisk/extconfig.conf:/etc/asterisk/extconfig.conf
+    networks:
+      - asterisk-net
+
+volumes:
+  postgres-data:
+
+networks:
+  asterisk-net:
+    driver: bridge
+
