@@ -111,18 +111,20 @@ CREATE TABLE ps_endpoint_id_ips (
 );
 
 CREATE TABLE ps_endpoints (
-  id VARCHAR(40) PRIMARY KEY,
+  id VARCHAR(255) PRIMARY KEY,
   transport VARCHAR(40),
-  aors VARCHAR(40),
-  auth VARCHAR(40),
-  context VARCHAR(80),
-  disallow VARCHAR(80),
-  allow VARCHAR(80),
+  aors VARCHAR(2048),
+  auth VARCHAR(255),
+  context VARCHAR(40),
+  disallow VARCHAR(200),
+  allow VARCHAR(200),
   direct_media BOOLEAN,
-  connected_line_method VARCHAR(80),
-  direct_media_method VARCHAR(80),
-  direct_media_glare_mitigation VARCHAR(80),
-  disable_direct_media_on_nat BOOLEAN
+  force_rport BOOLEAN,
+  ice_support BOOLEAN,
+  identify_by VARCHAR(80),
+  rewrite_contact BOOLEAN,
+  rtp_symmetric BOOLEAN,
+  callerid VARCHAR(40)
 );
 
 CREATE TABLE ps_globals (
