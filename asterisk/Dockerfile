@@ -13,13 +13,15 @@ RUN apt-get update && apt-get install -y \
     apt-get clean
 
 # Baixa e instala o Asterisk
-RUN wget https://downloads.asterisk.org/pub/telephony/asterisk/asterisk-20-current.tar.gz && \
-    tar -xvzf asterisk-20-current.tar.gz && \
-    rm -rf asterisk-20-current.tar.gz &&  \
-    cd asterisk-* && \
+RUN wget https://downloads.asterisk.org/pub/telephony/asterisk/asterisk-22-current.tar.gz && \
+    tar -xvzf asterisk-22-current.tar.gz && \
+    rm -rf asterisk-22-current.tar.gz &&  \
+    mv asterisk-* /usr/src/asterisk && \
+    cd /usr/src/asterisk && \
     ./configure && \
     make -j$(nproc) && \
     make install && \
+    make samples && \
     make config && \
     rm -rf /var/lib/apt/lists/*
 
@@ -29,3 +31,4 @@ COPY odbcinst.ini /etc/odbcinst.ini
 
 # Inicia o Asterisk em primeiro plano
 CMD ["asterisk", "-f"]
+
