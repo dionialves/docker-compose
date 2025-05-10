@@ -11,7 +11,6 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
       - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
-      - ./postgres/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
     networks:
       - asterisk-net
 
@@ -23,8 +22,11 @@ services:
       - ./odbc.ini:/etc/odbc.ini
       - ./odbcinst.ini:/etc/odbcinst.ini
     ports:
-      - "5060:5061"
-      - "10000:20000"
+      - "5060:5060/udp"
+      - "5060:5060/tcp"
+      - "5061:5061/udp"
+      - "5061:5061/tcp"
+      - "10000:20000/udp"
     networks:
       - asterisk-net
     depends_on:
