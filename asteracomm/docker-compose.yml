@@ -21,7 +21,7 @@ services:
     volumes:
       - ./asterisk/config:/etc/asterisk
       - ./asterisk/odbc.ini:/etc/odbc.ini
-      - ./asterisk/sodbcinst.ini:/etc/odbcinst.ini
+      - ./asterisk/odbcinst.ini:/etc/odbcinst.ini
     ports:
       - "5060:5060/udp"
       - "5060:5060/tcp"
@@ -36,7 +36,7 @@ services:
 
   asteracomm:
     build: ./asteracomm
-    container_name: backend
+    container_name: asteracomm-backend
     ports:
       - "8090:8090"
     volumes:
@@ -49,7 +49,7 @@ services:
 
   nginx:
     image: nginx:stable
-    container_name: nginx
+    container_name: asteracomm-frontend
     volumes:
       - ./nginx:/usr/share/nginx/html:ro
     ports:

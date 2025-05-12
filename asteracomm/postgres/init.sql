@@ -14,7 +14,7 @@ CREATE TABLE cdr (
   amaflags INTEGER NOT NULL,
   accountcode VARCHAR(20),
   uniqueid VARCHAR(32) NOT NULL,
-  userfield VARCHAR(255),
+  userfield VARCHAR(255)
 );
 
 
@@ -158,3 +158,11 @@ CREATE TABLE ps_systems (
   disable_tcp_switch VARCHAR(40)
 );
 
+
+CREATE TABLE asteracomm_endpoint_status_history (
+    id INTEGER PRIMARY KEY,
+    online BOOLEAN NOT NULL,
+    ip VARCHAR(255),
+    rtt VARCHAR(255),
+    checked_at TIMESTAMP
+);
