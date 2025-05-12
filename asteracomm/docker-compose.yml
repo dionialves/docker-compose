@@ -57,7 +57,7 @@ services:
     networks:
       - asteracomm-network
     depends_on:
-      - backend
+      - asteracomm
 
 
 volumes:
