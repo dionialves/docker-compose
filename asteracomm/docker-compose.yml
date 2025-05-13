@@ -40,7 +40,7 @@ services:
     ports:
       - "8090:8090"
     volumes:
-      - ./asteracomm/AsteraComm-current.jar:/app/AsteraComm-current.jar
+      - ./asteracomm/app:/app
     networks:
       - asteracomm-network
     depends_on:
